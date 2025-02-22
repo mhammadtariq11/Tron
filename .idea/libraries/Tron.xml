@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="Tron">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$" />
+      <root url="jar://$PROJECT_DIR$/../Databases/lib/mysql-connector-j-9.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Databases/lib/mysql-connector-java-5.1.46-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Databases/lib/mysql-connector-java-8.0.19.jar!/" />
+      <root url="file://$PROJECT_DIR$/.." />
+      <root url="file://$PROJECT_DIR$/.." />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src" />
+      <root url="file://$PROJECT_DIR$/.." />
+      <root url="file://$PROJECT_DIR$/../Arkanoid_MV/src" />
+      <root url="file://$PROJECT_DIR$/../BagArrayListIntro/src" />
+      <root url="file://$PROJECT_DIR$/../Character" />
+      <root url="file://$PROJECT_DIR$/../Chess/for_students" />
+      <root url="file://$PROJECT_DIR$/../ColorclickerOptimized/src" />
+      <root url="file://$PROJECT_DIR$/../ConnectFour/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../Databases/src" />
+      <root url="file://$PROJECT_DIR$/../F02km2(pt1)/src" />
+      <root url="file://$PROJECT_DIR$/../Zoo/src" />
+      <root url="file://$PROJECT_DIR$/../g4bv44" />
+      <root url="file://$PROJECT_DIR$/../sufi" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/.." recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/.." recursive="false" type="SOURCES" />
+  </library>
+</component>
