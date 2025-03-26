@@ -1,47 +1,32 @@
 pipeline {
     agent any
-
     tools {
-        maven 'M3'  // Preconfigured Maven in Jenkins
-        jdk 'jdk17' // Java 17 (configure in Global Tools)
+        jdk 'jdk17'
     }
-
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/your-account/your-game.git'
+                    url: 'https://github.com/mhammadtariq11/Tron.git'
             }
         }
-
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
-                archiveArtifacts 'target/*.jar'  // Saves game JAR
+                bat '''
+                    mkdir target
+                    javac -d target/classes src/*.java
+                    jar cvfe target/Tron.jar Main -C target/classes .
+                '''
+                archiveArtifacts 'target/Tron.jar'
             }
         }
-
         stage('Test') {
             steps {
-                sh 'mvn test'
-                junit 'target/surefire-reports/**/*.xml'  // Publishes test results
-                jacoco execPattern: 'target/jacoco.exec'  // Code coverage
+                bat '''
+                    javac -d target/test-classes -cp target/classes src/Test*.java
+                    java -cp target/classes;target/test-classes org.junit.runner.JUnitCore UnitTesting
+                '''
             }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                // Fail if test coverage < 80%
-                sh 'mvn verify -Djacoco.min.line.percentage=80'
-            }
-        }
-    }
-
-    post {
-        always {
-            mail to: 'team@email.com',
-                 subject: "Game Build ${currentBuild.result}",
-                 body: "Build ${currentBuild.result}: ${env.BUILD_URL}"
         }
     }
 }
