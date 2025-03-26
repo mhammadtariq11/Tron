@@ -1,5 +1,9 @@
+package test.java;
+import java.GameController;
+import java.GameModel;
 import org.junit.jupiter.api.*;
 
+import java.Player;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
