@@ -1,15 +1,15 @@
 pipeline {
     agent any
-    
     tools {
-        jdk 'jdk17'
-        maven 'maven-3.9.6'
+        jdk 'Java 17'
+        maven 'Maven'
     }
-
+    
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main',
+                    url: 'https://github.com/mhammadtariq11/Tron.git'
             }
         }
         
@@ -21,9 +21,19 @@ pipeline {
         
         stage('Test') {
             steps {
-                bat 'mvn test'
-                junit 'target/test-results/**/*.xml'
-                archiveArtifacts 'target/test-results/*'
+                script {
+                    try {
+                        bat 'mvn surefire:test'  // Explicit test execution
+                    } finally {
+                        junit '**/target/surefire-reports/*.xml'  // Broader pattern
+                        archiveArtifacts '**/target/surefire-reports/*.txt,**/target/surefire-reports/*.xml'
+                    }
+                }
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'  // Double check
+                }
             }
         }
         
@@ -37,7 +47,11 @@ pipeline {
     
     post {
         always {
-            junit 'target/test-results/**/*.xml'
+            emailext (
+                subject: "Tron Build ${currentBuild.currentResult}",
+                body: "Build ${env.BUILD_URL}\nTest results: ${currentBuild.testResultAction?.totalCount} tests, ${currentBuild.testResultAction?.failCount} failures",
+                to: 'your-email@example.com'
+            )
         }
     }
 }

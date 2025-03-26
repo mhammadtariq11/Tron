@@ -14,6 +14,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <junit.version>5.9.2</junit.version>
+        <maven.surefire.version>3.0.0</maven.surefire.version>
     </properties>
 
     <dependencies>
@@ -47,12 +48,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${maven.surefire.version}</version>
                 <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
-                    <reportsDirectory>${project.build.directory}/test-results</reportsDirectory>
                 </configuration>
             </plugin>
         </plugins>
