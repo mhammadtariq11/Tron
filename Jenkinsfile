@@ -1,15 +1,15 @@
 pipeline {
     agent any
-    tools {
-        jdk 'Java 17'      // Must match Jenkins config exactly
-        maven 'Maven'      // Case-sensitive
-    }
     
+    tools {
+        jdk 'jdk17'
+        maven 'maven-3.9.6'
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/mhammadtariq11/Tron.git'
+                checkout scm
             }
         }
         
@@ -22,8 +22,22 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'mvn test'
-                junit 'target/surefire-reports/**/*.xml'
+                junit 'target/test-results/**/*.xml'
+                archiveArtifacts 'target/test-results/*'
             }
+        }
+        
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+                archiveArtifacts 'target/*.jar'
+            }
+        }
+    }
+    
+    post {
+        always {
+            junit 'target/test-results/**/*.xml'
         }
     }
 }
