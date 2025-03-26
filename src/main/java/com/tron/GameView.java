@@ -1,4 +1,4 @@
-package java;
+package main.java.com.tron;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

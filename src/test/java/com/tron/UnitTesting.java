@@ -1,9 +1,9 @@
-package test.java;
-import java.GameController;
-import java.GameModel;
+package test.java.com.tron;
+import main.java.com.tron.GameController;
+import main.java.com.tron.GameModel;
 import org.junit.jupiter.api.*;
 
-import java.Player;
+import main.java.com.tron.Player;
 import java.awt.event.KeyEvent;
 import java.util.List;
 

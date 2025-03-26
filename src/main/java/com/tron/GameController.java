@@ -1,4 +1,4 @@
-package java;
+package main.java.com.tron;
 import java.awt.event.KeyEvent;
 import java.util.Timer;
 import java.util.TimerTask;
